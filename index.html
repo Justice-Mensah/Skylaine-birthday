@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, Skylaine Abena Pokuah 🎂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c9956a;
+      --gold-light: #f0c98a;
+      --blush: #fce8ec;
+      --rose: #e8b0c0;
+      --cream: #fdf8f6;
+      --deep: #3a1e28;
+      --mauve: #b06880;
+      --sage: #c4a8c0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--deep);
+      font-family: 'Cormorant Garamond', serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      width: 12px; height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+      mix-blend-mode: multiply;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: left 0.15s ease, top 0.15s ease;
+      opacity: 0.6;
+    }
+
+    /* Stars canvas */
+    #starfield {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(160deg, #1a0812 0%, #2e0e1a 40%, #3d1228 70%, #1e0818 100%);
+      z-index: 1;
+    }
+
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .glow-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(201,149,106,0.18) 0%, transparent 70%);
+      top: -100px; left: -100px;
+      animation: driftA 12s ease-in-out infinite alternate;
+    }
+    .glow-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(232,176,192,0.18) 0%, transparent 70%);
+      bottom: -80px; right: -80px;
+      animation: driftB 10s ease-in-out infinite alternate;
+    }
+    .glow-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(196,168,192,0.14) 0%, transparent 70%);
+      top: 40%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    @keyframes driftA { from { transform: translate(0,0); } to { transform: translate(60px, 40px); } }
+    @keyframes driftB { from { transform: translate(0,0); } to { transform: translate(-40px, -60px); } }
+    @keyframes pulse { 0%,100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.15); } }
+
+    .hero-ornament {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      pointer-events: none;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--gold-light);
+      animation: twinkle var(--dur, 3s) ease-in-out infinite;
+      animation-delay: var(--del, 0s);
+      opacity: 0;
+    }
+    @keyframes twinkle {
+      0%,100% { opacity: 0; transform: scale(0.5); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      animation: fadeUp 1.4s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: 0;
+      animation: fadeIn 1s 0.4s forwards;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(3.5rem, 10vw, 9rem);
+      color: #fff;
+      line-height: 1;
+      text-shadow:
+        0 0 40px rgba(212,168,83,0.5),
+        0 0 80px rgba(212,168,83,0.2);
+      opacity: 0;
+      animation: fadeIn 1s 0.7s forwards, shimmer 4s 1.7s ease-in-out infinite;
+      margin-bottom: 0.3rem;
+    }
+
+    @keyframes shimmer {
+      0%,100% { text-shadow: 0 0 40px rgba(212,168,83,0.5), 0 0 80px rgba(212,168,83,0.2); }
+      50% { text-shadow: 0 0 60px rgba(212,168,83,0.8), 0 0 120px rgba(212,168,83,0.4), 0 0 180px rgba(240,208,128,0.2); }
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 5rem);
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      opacity: 0;
+      animation: fadeIn 1s 1s forwards;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-age-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(90px, 15vw, 130px);
+      height: clamp(90px, 15vw, 130px);
+      border-radius: 50%;
+      border: 2px solid rgba(212,168,83,0.6);
+      background: rgba(212,168,83,0.1);
+      backdrop-filter: blur(8px);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--gold);
+      margin: 1.5rem auto;
+      opacity: 0;
+      animation: fadeIn 1s 1.3s forwards, rotateBadge 20s linear infinite;
+      position: relative;
+      box-shadow: 0 0 30px rgba(212,168,83,0.2), inset 0 0 20px rgba(212,168,83,0.05);
+    }
+    @keyframes rotateBadge { from { box-shadow: 0 0 30px rgba(212,168,83,0.2), inset 0 0 20px rgba(212,168,83,0.05), 10px 0 30px rgba(232,180,160,0.1); } to { box-shadow: 0 0 30px rgba(212,168,83,0.2), inset 0 0 20px rgba(212,168,83,0.05), -10px 0 30px rgba(154,184,160,0.1); } }
+
+    .badge-ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,168,83,0.3);
+      animation: spin 8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: rgba(253,248,242,0.7);
+      font-style: italic;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      animation: fadeIn 1s 1.6s forwards;
+      margin-bottom: 2.5rem;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeIn 1s 2.5s forwards;
+      color: rgba(253,248,242,0.4);
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, rgba(212,168,83,0.8), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine { 0%,100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.5); opacity: 0.4; } }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* ── DIVIDER ── */
+    .ornamental-divider {
+      text-align: center;
+      padding: 3rem 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .divider-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--gold);
+    }
+    .divider-line::before,
+    .divider-line::after {
+      content: '';
+      flex: 1;
+      max-width: 200px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .divider-symbol { font-size: 1.4rem; }
+
+    /* ── PHOTO GALLERY ── */
+    .gallery-section {
+      position: relative;
+      z-index: 1;
+      padding: 2rem 1rem 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--deep);
+      line-height: 1.2;
+    }
+    .section-title em { color: var(--mauve); font-style: italic; }
+
+    /* Masonry-style grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 16px;
+    }
+
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #e8ddd5;
+      box-shadow: 0 4px 20px rgba(58,40,32,0.12);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease;
+    }
+    .photo-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 12px 40px rgba(58,40,32,0.2);
+      z-index: 2;
+    }
+
+    .photo-card:nth-child(1) { grid-column: 1 / 8; grid-row: 1; aspect-ratio: 4/3; }
+    .photo-card:nth-child(2) { grid-column: 8 / 13; grid-row: 1; aspect-ratio: 3/4; }
+    .photo-card:nth-child(3) { grid-column: 1 / 5; grid-row: 2; aspect-ratio: 1; }
+    .photo-card:nth-child(4) { grid-column: 5 / 9; grid-row: 2; aspect-ratio: 1; }
+    .photo-card:nth-child(5) { grid-column: 9 / 13; grid-row: 2 / 4; aspect-ratio: 3/4; }
+    .photo-card:nth-child(6) { grid-column: 1 / 5; grid-row: 3; aspect-ratio: 4/3; }
+    .photo-card:nth-child(7) { grid-column: 5 / 9; grid-row: 3; aspect-ratio: 4/3; }
+
+    .photo-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .photo-card:hover img { transform: scale(1.05); }
+
+    /* Placeholder photo for demo */
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      min-height: 220px;
+      background: linear-gradient(135deg, var(--blush) 0%, #e8d8d0 50%, var(--rose) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--mauve);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+    .photo-placeholder .ph-icon { font-size: 2.5rem; opacity: 0.5; }
+    .photo-placeholder .ph-label { font-style: italic; opacity: 0.7; }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(58,40,32,0.5) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.2rem;
+    }
+    .photo-card:hover .photo-overlay { opacity: 1; }
+    .photo-caption {
+      color: #fff;
+      font-size: 0.85rem;
+      font-style: italic;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── MESSAGE SECTION ── */
+    .message-section {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(160deg, #2e0e1a 0%, #1a0812 50%, #2e0818 100%);
+      padding: 6rem 1rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .message-bg-ornament {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .message-bg-ornament::before,
+    .message-bg-ornament::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+    }
+    .message-bg-ornament::before {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(212,168,83,0.1) 0%, transparent 70%);
+      top: -200px; left: -100px;
+    }
+    .message-bg-ornament::after {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(176,120,128,0.1) 0%, transparent 70%);
+      bottom: -150px; right: -100px;
+    }
+
+    .message-container {
+      position: relative;
+      z-index: 2;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .message-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    .message-quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      line-height: 0.5;
+      color: var(--gold);
+      opacity: 0.3;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .message-body {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      line-height: 1.9;
+      color: rgba(253,248,242,0.9);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .message-body strong {
+      color: var(--gold-light);
+      font-style: normal;
+    }
+
+    .message-signature {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--gold);
+    }
+
+    .message-date {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      color: rgba(253,248,242,0.4);
+      text-transform: uppercase;
+    }
+
+    /* ── WISH CARDS ── */
+    .wishes-section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .wishes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .wish-card {
+      background: #fff;
+      border-radius: 4px;
+      padding: 2.5rem 2rem;
+      border-top: 3px solid var(--gold);
+      box-shadow: 0 2px 15px rgba(58,40,32,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .wish-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(212,168,83,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .wish-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(58,40,32,0.12);
+    }
+
+    .wish-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .wish-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--deep);
+      margin-bottom: 0.75rem;
+    }
+    .wish-text {
+      font-size: 1rem;
+      color: #7a6058;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      position: relative;
+      z-index: 1;
+      background: #0f0509;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .footer-name {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .footer-tagline {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(253,248,242,0.25);
+    }
+
+    /* ── FLOATING HEARTS ── */
+    .floating-heart {
+      position: fixed;
+      bottom: -50px;
+      font-size: 1.2rem;
+      opacity: 0;
+      animation: floatUp var(--dur) ease-in var(--del) forwards;
+      pointer-events: none;
+      z-index: 999;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .photo-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .photo-card:nth-child(1) { grid-column: 1/3; grid-row: 1; }
+      .photo-card:nth-child(2) { grid-column: 1/2; grid-row: 2; }
+      .photo-card:nth-child(3) { grid-column: 2/3; grid-row: 2; }
+      .photo-card:nth-child(4) { grid-column: 1/2; grid-row: 3; }
+      .photo-card:nth-child(5) { grid-column: 2/3; grid-row: 3; }
+      .photo-card:nth-child(6) { grid-column: 1/2; grid-row: 4; }
+      .photo-card:nth-child(7) { grid-column: 2/3; grid-row: 4; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<canvas id="starfield"></canvas>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║          H E R O            ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section class="hero" id="hero">
+  <div class="hero-glow glow-1"></div>
+  <div class="hero-glow glow-2"></div>
+  <div class="hero-glow glow-3"></div>
+
+  <!-- Sparkles -->
+  <div class="hero-ornament" id="sparkleContainer"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">A celebration of our little princess</p>
+    <h1 class="hero-title">Happy Birthday</h1>
+    <p class="hero-name">Skylaine Abena Pokuah</p>
+
+    <div class="hero-age-badge">
+      <div class="badge-ring"></div>
+      1
+    </div>
+
+    <p class="hero-tagline">One whole year of being our greatest gift 👑</p>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="ornamental-divider">
+  <div class="divider-line">
+    <span class="divider-symbol">❧</span>
+    <span style="font-size:0.8rem;letter-spacing:0.4em;color:var(--mauve);text-transform:uppercase;">Memories</span>
+    <span class="divider-symbol">❧</span>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║        G A L L E R Y        ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section class="gallery-section">
+  <div class="section-header">
+    <p class="section-label">A year in photographs</p>
+    <h2 class="section-title">Skylaine's First Year, <em>Treasured Forever</em></h2>
+  </div>
+
+  <div class="photo-grid">
+    <div class="photo-card">
+      <img src="images/image1.jpeg" alt="The day our world changed">
+      <div class="photo-overlay"><span class="photo-caption">The day our world changed</span></div>
+    </div>
+    <div class="photo-card">
+      <img src="images/image2.jpeg" alt="Skylaine's first smile">
+      <div class="photo-overlay"><span class="photo-caption">Skylaine's first smile 💛</span></div>
+    </div>
+    <div class="photo-card">
+      <img src="images/image3.jpeg" alt="Already a princess">
+      <div class="photo-overlay"><span class="photo-caption">Already a princess</span></div>
+    </div>
+    <div class="photo-card">
+      <img src="images/image4.jpeg" alt="Discovering her world">
+      <div class="photo-overlay"><span class="photo-caption">Discovering her world</span></div>
+    </div>
+    <div class="photo-card">
+      <img src="images/image5.jpeg" alt="Growing so gracefully">
+      <div class="photo-overlay"><span class="photo-caption">Growing so gracefully</span></div>
+    </div>
+    <div class="photo-card">
+      <img src="images/image1.jpeg" alt="Our little Abena">
+      <div class="photo-overlay"><span class="photo-caption">Our little Abena</span></div>
+    </div>
+    <div class="photo-card">
+      <img src="images/image2.jpeg" alt="Happy First Birthday">
+      <div class="photo-overlay"><span class="photo-caption">Happy First Birthday, Skylaine 👑</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║        M E S S A G E        ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section class="message-section">
+  <div class="message-bg-ornament"></div>
+  <div class="message-container">
+    <p class="message-eyebrow">A letter from the heart</p>
+    <span class="message-quote-mark">"</span>
+    <p class="message-body">
+      My dearest <strong>Skylaine Abena Pokuah</strong>,<br><br>
+      One year ago today, a little queen arrived and our world was never the same again.
+      From the very first moment we held you, we knew — you were something extraordinary.
+      A daughter. A light. A miracle wrapped in the softest grace.<br><br>
+      Watching you grow this past year has been the greatest privilege of our lives.
+      Every tiny milestone — your first smile, your first giggle, the first time your eyes
+      lit up at something new — we have treasured every single one.<br><br>
+      <strong>Abena</strong>, born on a Tuesday, already so full of purpose and charm.
+      <strong>Pokuah</strong>, a name that carries the strength of those who came before you.
+      You wear them both beautifully, our <em>Skylaine</em>.<br><br>
+      May your life be as radiant as your smile, as gentle as your spirit,
+      and as limitless as the sky your name was made for.
+      <em>Happy First Birthday, our precious girl.</em>
+      You are loved beyond all measure.
+    </p>
+    <div class="message-signature">With all our love, always</div>
+    <p class="message-date">February · 2026</p>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="ornamental-divider">
+  <div class="divider-line">
+    <span class="divider-symbol">✦</span>
+    <span style="font-size:0.8rem;letter-spacing:0.4em;color:var(--mauve);text-transform:uppercase;">Wishes</span>
+    <span class="divider-symbol">✦</span>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║         W I S H E S         ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section class="wishes-section">
+  <div class="section-header">
+    <p class="section-label">From us to you</p>
+    <h2 class="section-title">Our Wishes for <em>Skylaine</em></h2>
+  </div>
+
+    <div class="wishes-grid">
+    <div class="wish-card">
+      <span class="wish-icon">👑</span>
+      <h3 class="wish-title">A Queen's Confidence</h3>
+      <p class="wish-text">May you always walk into every room knowing your worth — graceful, assured, and radiant.</p>
+    </div>
+    <div class="wish-card">
+      <span class="wish-icon">💛</span>
+      <h3 class="wish-title">A Heart Full of Joy</h3>
+      <p class="wish-text">May laughter find you easily and happiness be the melody that follows you all your days.</p>
+    </div>
+    <div class="wish-card">
+      <span class="wish-icon">🌸</span>
+      <h3 class="wish-title">Gentle Strength</h3>
+      <p class="wish-text">May you grow into a woman who is both tender and unbreakable — soft where it counts, fierce where it matters.</p>
+    </div>
+    <div class="wish-card">
+      <span class="wish-icon">🦋</span>
+      <h3 class="wish-title">Freedom to Bloom</h3>
+      <p class="wish-text">May you always have the courage to be fully, fearlessly, and beautifully yourself.</p>
+    </div>
+    <div class="wish-card">
+      <span class="wish-icon">🌟</span>
+      <h3 class="wish-title">Dreams Without Limits</h3>
+      <p class="wish-text">May every dream you dare to dream become a doorway to something even more magnificent than you imagined.</p>
+    </div>
+    <div class="wish-card">
+      <span class="wish-icon">🏡</span>
+      <h3 class="wish-title">Unwavering Love</h3>
+      <p class="wish-text">No matter where life takes you, Skylaine — may you always know you are held, cherished, and endlessly loved.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║        F O O T E R          ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<footer class="footer">
+  <div class="footer-name">Skylaine Abena Pokuah ✦ Year One</div>
+  <p class="footer-tagline">Made with love · February 2026</p>
+</footer>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+  // ── Custom cursor ──
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+  });
+
+  (function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animateRing);
+  })();
+
+  // ── Starfield canvas ──
+  const canvas = document.getElementById('starfield');
+  const ctx    = canvas.getContext('2d');
+  let W, H, stars = [];
+
+  function resizeCanvas() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    stars = Array.from({ length: 120 }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 1.5 + 0.3,
+      a: Math.random(),
+      da: (Math.random() * 0.004 + 0.001) * (Math.random() > 0.5 ? 1 : -1),
+    }));
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  function drawStars() {
+    ctx.clearRect(0, 0, W, H);
+    for (const s of stars) {
+      s.a = Math.max(0.05, Math.min(1, s.a + s.da));
+      if (s.a >= 1 || s.a <= 0.05) s.da *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(240,208,128,${s.a})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
+
+  // ── Hero sparkles ──
+  const sparkleContainer = document.getElementById('sparkleContainer');
+  for (let i = 0; i < 50; i++) {
+    const el = document.createElement('div');
+    el.className = 'sparkle';
+    el.style.cssText = `
+      left: ${Math.random() * 100}%;
+      top:  ${Math.random() * 100}%;
+      --dur: ${2 + Math.random() * 4}s;
+      --del: ${Math.random() * 5}s;
+      width:  ${2 + Math.random() * 4}px;
+      height: ${2 + Math.random() * 4}px;
+    `;
+    sparkleContainer.appendChild(el);
+  }
+
+  // ── Floating hearts on click ──
+  document.addEventListener('click', e => {
+    const hearts = ['👑','💛','🌸','💖','🎀','✨','🌟','💗','🌺','🦋'];
+    for (let i = 0; i < 5; i++) {
+      const h = document.createElement('div');
+      h.className = 'floating-heart';
+      h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      h.style.cssText = `
+        left: ${e.clientX + (Math.random() * 60 - 30)}px;
+        font-size: ${0.8 + Math.random() * 1}rem;
+        --dur: ${1.5 + Math.random() * 2}s;
+        --del: ${Math.random() * 0.4}s;
+      `;
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 4000);
+    }
+  });
+
+  // ── Scroll-reveal for wish cards & gallery ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) both';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.wish-card, .photo-card').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.animationDelay = `${i * 0.1}s`;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
